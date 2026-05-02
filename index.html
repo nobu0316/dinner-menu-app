@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日の夕飯どうする？</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <p class="eyebrow">家族の夕飯サポート</p>
+      <h1>今日の夕飯どうする？</h1>
+      <p class="lead">条件や冷蔵庫の食材から、今夜作りやすい献立を提案します。</p>
+    </header>
+
+    <section class="panel" aria-labelledby="condition-title">
+      <h2 id="condition-title">条件を選ぶ</h2>
+      <div class="tag-grid" id="tagOptions">
+        <label><input type="checkbox" value="簡単"> 簡単</label>
+        <label><input type="checkbox" value="肉"> 肉</label>
+        <label><input type="checkbox" value="魚"> 魚</label>
+        <label><input type="checkbox" value="野菜"> 野菜</label>
+        <label><input type="checkbox" value="子供向け"> 子供向け</label>
+        <label><input type="checkbox" value="余り物活用"> 余り物活用</label>
+      </div>
+      <div class="condition-actions">
+        <button class="primary-button" id="suggestButton" type="button">献立を提案する</button>
+        <button class="reset-button" id="resetConditionButton" type="button">条件をリセット</button>
+        <button class="reset-button reset-all-button" id="resetAllButton" type="button">すべてリセット</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="fridge-title">
+      <h2 id="fridge-title">冷蔵庫にある食材から探す</h2>
+      <div class="ingredient-picker" aria-label="よく使う食材">
+        <div class="ingredient-category">
+          <h3>肉・魚・卵</h3>
+          <div class="ingredient-buttons">
+            <button type="button" class="ingredient-button" data-ingredient="豚肉">豚肉</button>
+            <button type="button" class="ingredient-button" data-ingredient="鶏肉">鶏肉</button>
+            <button type="button" class="ingredient-button" data-ingredient="牛肉">牛肉</button>
+            <button type="button" class="ingredient-button" data-ingredient="ひき肉">ひき肉</button>
+            <button type="button" class="ingredient-button" data-ingredient="魚">魚</button>
+            <button type="button" class="ingredient-button" data-ingredient="鮭">鮭</button>
+            <button type="button" class="ingredient-button" data-ingredient="ツナ">ツナ</button>
+            <button type="button" class="ingredient-button" data-ingredient="卵">卵</button>
+          </div>
+        </div>
+
+        <div class="ingredient-category">
+          <h3>野菜</h3>
+          <div class="ingredient-buttons">
+            <button type="button" class="ingredient-button" data-ingredient="玉ねぎ">玉ねぎ</button>
+            <button type="button" class="ingredient-button" data-ingredient="にんじん">にんじん</button>
+            <button type="button" class="ingredient-button" data-ingredient="キャベツ">キャベツ</button>
+            <button type="button" class="ingredient-button" data-ingredient="じゃがいも">じゃがいも</button>
+            <button type="button" class="ingredient-button" data-ingredient="もやし">もやし</button>
+            <button type="button" class="ingredient-button" data-ingredient="ピーマン">ピーマン</button>
+            <button type="button" class="ingredient-button" data-ingredient="なす">なす</button>
+            <button type="button" class="ingredient-button" data-ingredient="白菜">白菜</button>
+            <button type="button" class="ingredient-button" data-ingredient="きのこ">きのこ</button>
+            <button type="button" class="ingredient-button" data-ingredient="ねぎ">ねぎ</button>
+          </div>
+        </div>
+
+        <div class="ingredient-category">
+          <h3>豆腐・加工品</h3>
+          <div class="ingredient-buttons">
+            <button type="button" class="ingredient-button" data-ingredient="豆腐">豆腐</button>
+            <button type="button" class="ingredient-button" data-ingredient="油揚げ">油揚げ</button>
+            <button type="button" class="ingredient-button" data-ingredient="納豆">納豆</button>
+            <button type="button" class="ingredient-button" data-ingredient="ちくわ">ちくわ</button>
+            <button type="button" class="ingredient-button" data-ingredient="ハム">ハム</button>
+            <button type="button" class="ingredient-button" data-ingredient="ウインナー">ウインナー</button>
+          </div>
+        </div>
+
+        <div class="ingredient-category">
+          <h3>主食</h3>
+          <div class="ingredient-buttons">
+            <button type="button" class="ingredient-button" data-ingredient="ごはん">ごはん</button>
+            <button type="button" class="ingredient-button" data-ingredient="うどん">うどん</button>
+            <button type="button" class="ingredient-button" data-ingredient="パスタ">パスタ</button>
+            <button type="button" class="ingredient-button" data-ingredient="焼きそば">焼きそば</button>
+          </div>
+        </div>
+
+        <div class="ingredient-category">
+          <h3>調味料・常備品</h3>
+          <div class="ingredient-buttons">
+            <button type="button" class="ingredient-button" data-ingredient="味噌">味噌</button>
+            <button type="button" class="ingredient-button" data-ingredient="しょうゆ">しょうゆ</button>
+            <button type="button" class="ingredient-button" data-ingredient="めんつゆ">めんつゆ</button>
+            <button type="button" class="ingredient-button" data-ingredient="カレー粉">カレー粉</button>
+            <button type="button" class="ingredient-button" data-ingredient="コンソメ">コンソメ</button>
+          </div>
+        </div>
+      </div>
+      <p class="selected-ingredients" id="selectedIngredientsText">選択中：なし</p>
+      <label class="input-label" for="fridgeInput">食材をカンマ区切りで入力</label>
+      <textarea id="fridgeInput" rows="3" placeholder="例：豚肉、玉ねぎ、卵"></textarea>
+      <div class="fridge-actions">
+        <button class="secondary-button" id="searchButton" type="button">この食材で探す</button>
+        <button class="reset-button" id="resetFridgeButton" type="button">食材をリセット</button>
+      </div>
+    </section>
+
+    <section class="results-section" aria-live="polite">
+      <div class="section-heading">
+        <h2>結果</h2>
+        <button class="ghost-button hidden" id="anotherButton" type="button">別の候補を見る</button>
+      </div>
+      <div id="resultArea" class="card-list">
+        <p class="empty-message">条件を選ぶか、冷蔵庫の食材を入力してください。</p>
+      </div>
+    </section>
+
+    <section class="shopping-section" id="shoppingListSection" aria-labelledby="shopping-title">
+      <h2 id="shopping-title">買い物リスト</h2>
+      <div id="shoppingList" class="shopping-list">
+        <p class="empty-message">献立を選ぶと、必要な食材が表示されます。</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
